@@ -1,0 +1,21 @@
+{
+  "name": "tab-manager",
+  "version": "1.0.0",
+  "description": "浏览器标签页管理插件",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "generate-icons": "node public/icons/generate-icons.js"
+  },
+  "dependencies": {
+    "vue": "^3.4.0",
+    "pinia": "^2.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "vite": "^5.0.0",
+    "sharp": "^0.33.0"
+  }
+}
