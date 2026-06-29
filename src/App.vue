@@ -89,7 +89,10 @@ const stats = computed(() => tabStore.stats)
 const pinnedGroups = computed(() => tabStore.pinnedGroups)
 const otherGroups = computed(() => tabStore.otherGroups)
 const sleepSuggestions = computed(() => tabStore.sleepSuggestions)
-const settings = computed(() => settingStore.settings)
+const settings = computed(() => ({
+  ...settingStore.settings,
+  theme: themeStore.currentTheme
+}))
 const pinnedDomains = computed(() => tabStore.pinnedDomains)
 const isLoading = computed(() => tabStore.isLoading)
 
@@ -145,7 +148,12 @@ const closeSleepTab = async (tabId) => {
 }
 
 const saveSettings = async (newSettings) => {
-  await settingStore.saveSettings(newSettings)
+  const { theme, ...rest } = newSettings
+  if (theme && theme !== themeStore.currentTheme) {
+    themeStore.currentTheme = theme
+    await themeStore.saveTheme(theme)
+  }
+  await settingStore.saveSettings(rest)
   showToast('设置已保存', 'success')
 }
 
